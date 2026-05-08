@@ -8,6 +8,24 @@
 - 显示歌单内歌曲详情（歌名、歌手、专辑、时长）
 - 按关键词搜索歌单
 - 显示播放量、歌曲数等统计信息
+- **GUI 图形界面版本**（WPF 暗色主题）
+
+## 项目结构
+
+```
+botcode/
+├── README.md
+├── NeteasePlaylist/         # 命令行版本
+│   ├── NeteasePlaylist.csproj
+│   └── Program.cs
+├── NeteasePlaylistGui/      # GUI 图形界面版本 (WPF)
+│   ├── NeteasePlaylistGui.csproj
+│   ├── App.xaml
+│   ├── App.xaml.cs
+│   ├── MainWindow.xaml
+│   └── MainWindow.xaml.cs
+└── netease_playlist.py      # Python 版本
+```
 
 ## 环境要求
 
@@ -70,7 +88,35 @@ echo 'export PATH=$PATH:$DOTNET_ROOT' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-## 使用方法
+## GUI 图形界面版本
+
+### 运行
+
+```bash
+cd NeteasePlaylistGui
+dotnet run
+```
+
+### 打包成 EXE
+
+```bash
+cd NeteasePlaylistGui
+dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
+```
+
+打包后的文件在 `bin/Release/net8.0-windows/win-x64/publish/` 目录下，是一个独立的 exe，不需要安装 .NET 运行时。
+
+### 界面功能
+
+- 顶部输入用户 ID 点击查询
+- 左侧显示歌单列表，支持实时搜索过滤
+- 右侧显示选中歌单的歌曲列表
+- 点击任意歌单自动加载歌曲
+- 暗色主题，类 Spotify 风格
+
+---
+
+## 命令行版本
 
 ### 1. 克隆仓库
 
